@@ -6,6 +6,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http'
 })
 export class ImageService {
 
+  title = 'proxy';
+
   private apiUrl = 'https://random-d.uk/api/v2';
 
   constructor(private http: HttpClient) { }
@@ -16,7 +18,7 @@ export class ImageService {
       this.http.get(`${this.apiUrl}/random`)
       .subscribe( resp =>{
         if (resp) {
-          console.log(" getImageRandom")
+          console.log(" getImageRandom", resp)
            resolve(true);
         }else{
            resolve(false);
@@ -24,4 +26,18 @@ export class ImageService {
       });
     });
   }
+
+  async geListImage(){
+    return new Promise( resolve =>{
+     this.http.get(`${this.apiUrl}/list`)
+     .subscribe( resp =>{
+       if (resp) {
+         console.log(" geListImage", resp)
+          resolve(true);
+       }else{
+          resolve(false);
+       }
+     });
+   });
+ }
 }
