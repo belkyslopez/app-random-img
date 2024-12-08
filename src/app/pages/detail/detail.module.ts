@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DetailPage } from './detail.page';
 
-import { Tab3PageRoutingModule } from './detail-routing.module';
+import { DetailPageRoutingModule } from './detail-routing.module';
 
 @NgModule({
   imports: [

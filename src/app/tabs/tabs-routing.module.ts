@@ -14,11 +14,11 @@ const routes: Routes = [
       {
         path: 'list',
         loadChildren: () => import('../pages/list/list.module').then(m => m.ListPageModule)
-      },/*
+      },
       {
-        path: 'tab3',
-        loadChildren: () => import('../pages/tab3/tab3.module').then(m => m.Tab3PageModule)
-      },*/
+        path: 'detail',
+        loadChildren: () => import('../pages/detail/detail.module').then(m => m.DetailPageModule)
+      },
       {
         path: '',
         redirectTo: '/tabs/home',

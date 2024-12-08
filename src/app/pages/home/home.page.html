@@ -1,18 +1,20 @@
-<!--<ion-header [translucent]="true">
+<ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
       Random image load
     </ion-title>
   </ion-toolbar>
-</ion-header>-->
+</ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large"> Random image load</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="image-container">
+    <img src="../../assets/images/imgL.jpg" alt="Imagen cargada" />
+  </div>
 
-  <ion-button (click)="getImageRandom()">Default</ion-button>
+  <div class="image-container" *ngIf="imageUrl">
+      <img [src]="imageUrl" alt="Imagen cargada" />
+  </div>
+
+  <ion-button expand="block" (click)="getImageRandom()">load randon image</ion-button>
 
 </ion-content>

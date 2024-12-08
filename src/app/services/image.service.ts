@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
-
+import { Observable, of } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
@@ -14,7 +14,14 @@ export class ImageService {
 
 
   async getImageRandom(){
-     return new Promise( resolve =>{
+    const dummy = {
+      "message": "Powered by random-d.uk",
+      "url": "https://random-d.uk/api/176.jpg"
+  }
+
+  return of(dummy)
+}
+  /*    return new Promise( resolve =>{
       this.http.get(`${this.apiUrl}/random`)
       .subscribe( resp =>{
         if (resp) {
@@ -24,8 +31,8 @@ export class ImageService {
            resolve(false);
         }
       });
-    });
-  }
+    });*/
+
 
   async geListImage(){
     return new Promise( resolve =>{
