@@ -15,7 +15,9 @@ export class HomePage {
   getImageRandom() {
     this.imageService.getImageRandom().subscribe(data => {
       this.imageUrl = data.url;
-      console.log(this.imageUrl);
+    },
+    (error) => {
+      console.error('Error al obtener la imágen:', error);
     });
   }
 }

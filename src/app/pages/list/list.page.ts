@@ -8,9 +8,7 @@ import { ImageService } from 'src/app/services/image.service';
   styleUrls: ['list.page.scss']
 })
 export class ListPage implements OnInit {
-  images: { id: number; url: string }[] = [];
-  navCtrl: any;
-  list: any;
+  list: string[] = [];
   imageNumbers: string[] = [];
 
   constructor(private router: Router,
@@ -24,7 +22,6 @@ export class ListPage implements OnInit {
   viewImage(numberImage: any) {
     this.imageService.selectNumber(numberImage);
     this.router.navigate(['/detail']);
-
   }
 
   getList() {
@@ -32,19 +29,17 @@ export class ListPage implements OnInit {
       this.list = data.images;
       this.list.sort();
       this.imageNumbers = this.list.map((image: any) => this.extractImageNumber(image));
-
     },
-    (error) => {
-      console.error('Error al obtener la lista de imágenes:', error);
-    });
+      (error) => {
+        console.error('Error al obtener la lista de imágenes:', error);
+      });
   }
 
   extractImageNumber(imageName: string): string {
     return imageName.replace('.jpg', '');
   }
 
-  back(){
+  back() {
     this.router.navigate(['/home']);
   }
-
 }

@@ -16,16 +16,16 @@ export class DetailPage {
   constructor(private route: ActivatedRoute,
     private imageService: ImageService,
     private router: Router,
-  ) {}
+  ) { }
 
   ngOnInit() {
-  this.imageNumber = this.imageService.getNumber();
-  this.imageUrl = `https://random-d.uk/api/${this.imageNumber}.jpg`;
+    this.imageNumber = this.imageService.getNumber();
+    this.imageUrl = `https://random-d.uk/api/${this.imageNumber}.jpg`;
 
-}
+  }
 
-back(){
-  this.router.navigate(['/list']);
-}
+  back() {
+    this.router.navigate(['/list']);
+  }
 
 }
