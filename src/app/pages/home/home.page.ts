@@ -8,15 +8,14 @@ import { ImageService } from '../../services/image.service';
 })
 export class HomePage {
 
-  imageUrl:string | null = null;
+  imageUrl: string | null = null;
 
-  constructor( private imageService: ImageService) {}
+  constructor(private imageService: ImageService) { }
 
-  getImageRandom(){
-    this.imageService.getImageRandom()
-    .then((response:any) => {
-      this.imageUrl = response.url;
-      console.log("url ==> ", this.imageUrl );
-    })
+  getImageRandom() {
+    this.imageService.getImageRandom().subscribe(data => {
+      this.imageUrl = data.url;
+      console.log(this.imageUrl);
+    });
   }
 }

@@ -6,45 +6,25 @@ import { Observable, of } from 'rxjs';
 })
 export class ImageService {
 
-  title = 'proxy';
+  numberSeleted: any;
 
-  private apiUrl = 'https://random-d.uk/api/v2';
+  private apiUrl = 'http://localhost:8000/api/v2';
 
   constructor(private http: HttpClient) { }
 
-
-  async getImageRandom(){
-    const dummy = {
-      "message": "Powered by random-d.uk",
-      "url": "https://random-d.uk/api/176.jpg"
+  getImageRandom(): Observable<any>{
+      return this.http.get(`${this.apiUrl}/random`)
   }
 
-  return of(dummy)
-}
-  /*    return new Promise( resolve =>{
-      this.http.get(`${this.apiUrl}/random`)
-      .subscribe( resp =>{
-        if (resp) {
-          console.log(" getImageRandom", resp)
-           resolve(true);
-        }else{
-           resolve(false);
-        }
-      });
-    });*/
+  geListImage(): Observable<any>{
+    return this.http.get(`${this.apiUrl}/list`)
+  }
 
+  selectNumber(number: any){
+    this.numberSeleted= number;
+  }
 
-  async geListImage(){
-    return new Promise( resolve =>{
-     this.http.get(`${this.apiUrl}/list`)
-     .subscribe( resp =>{
-       if (resp) {
-         console.log(" geListImage", resp)
-          resolve(true);
-       }else{
-          resolve(false);
-       }
-     });
-   });
- }
+  getNumber(){
+    return this.numberSeleted;
+  }
 }

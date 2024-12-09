@@ -7,9 +7,9 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" class="ion-padding">
-  <div class="image-container">
+ <!--<div class="image-container" *ngIf="!imageUrl">
     <img src="../../assets/images/imgL.jpg" alt="Imagen cargada" />
-  </div>
+  </div>-->
 
   <div class="image-container" *ngIf="imageUrl">
       <img [src]="imageUrl" alt="Imagen cargada" />

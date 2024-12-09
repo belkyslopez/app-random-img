@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ImageService } from 'src/app/services/image.service';
 
 @Component({
   selector: 'app-list',
@@ -9,21 +10,41 @@ import { Router } from '@angular/router';
 export class ListPage implements OnInit {
   images: { id: number; url: string }[] = [];
   navCtrl: any;
+  list: any;
+  imageNumbers: string[] = [];
 
-  constructor(private router: Router) {}
+  constructor(private router: Router,
+    private imageService: ImageService
+  ) { }
 
   ngOnInit() {
-    this.images = [
-      { id: 1, url: 'https://random-d.uk/api/1.jpg' },
-      { id: 2, url: 'https://random-d.uk/api/2.jpg' },
-      { id: 3, url: 'https://random-d.uk/api/3.jpg' },
-    ];
+    this.getList();
   }
 
-  viewImage() {
-  //  viewImage(image: { id: number; url: string }) {
-  //  this.router.navigate(['/image-view', image.id], { state: { imageUrl: image.url } });
+  viewImage(numberImage: any) {
+    this.imageService.selectNumber(numberImage);
     this.router.navigate(['/detail']);
+
+  }
+
+  getList() {
+    this.imageService.geListImage().subscribe(data => {
+      this.list = data.images;
+      this.list.sort();
+      this.imageNumbers = this.list.map((image: any) => this.extractImageNumber(image));
+
+    },
+    (error) => {
+      console.error('Error al obtener la lista de imágenes:', error);
+    });
+  }
+
+  extractImageNumber(imageName: string): string {
+    return imageName.replace('.jpg', '');
+  }
+
+  back(){
+    this.router.navigate(['/home']);
   }
 
 }
